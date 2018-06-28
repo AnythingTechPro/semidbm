@@ -166,6 +166,19 @@ class _SemiDBM(object):
 
     def values(self):
         return [self[key] for key in self._index]
+    
+    def set_default(self, key, default_value):
+        """
+        If the key already exists in the items dictionary, the value
+        will be returned in the dictionary; else the value will be added
+        to the dictionary and the default_value will be returned.
+        """
+        
+        if key in self:
+            return self[key]
+        
+        self[key] = default_value
+        return default_value
 
     def close(self, compact=False):
         """Close the db.
